@@ -8,7 +8,7 @@ shadowsocks=pccw.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false
 
 shadowsocks=wtt.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港2
 
-shadowsocks=wtt2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=香港1
+shadowsocks=wtt2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港1
 
 shadowsocks=rr.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇷🇺俄罗斯
 
