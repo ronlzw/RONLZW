@@ -13,5 +13,3 @@ shadowsocks=wtt2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false
 shadowsocks=rr.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇷🇺俄罗斯
 
 shadowsocks=us2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇺🇸美国
-
-shadowsocks=13.76.249.59: 443, method=aes-256-ctr, password=MUFC2020, fast-open=false, udp-relay=false, tag=新加坡
