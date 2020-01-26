@@ -1,0 +1,11 @@
+shadowsocks=tw2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇼🇸台湾
+
+shadowsocks=pccw2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港5
+
+shadowsocks=hkbn.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港4
+
+shadowsocks=pccw.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港3
+
+shadowsocks=wtt.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港2
+
+shadowsocks=wtt2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港1
