@@ -1,0 +1,62 @@
+{
+  "configs": [
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "香港",
+      "server": "wtt.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "香港2",
+      "server": "wtt2.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "香港3",
+      "server": "pccw.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "香港4",
+      "server": "hkbn.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "香港5",
+      "server": "pccw2.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "俄罗斯",
+      "server": "rr.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "台湾",
+      "server": "tw2.67ss.xyz",
+      "server_port": 49414
+    },
+    {
+      "method": "rc4-md5",
+      "password": "36735",
+      "remarks": "美国",
+      "server": "us2.67ss.xyz",
+      "server_port": 49414
+    }
+  ],
+  "localPort": 1080,
+  "shareOverLan": false
+}
