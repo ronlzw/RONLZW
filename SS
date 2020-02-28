@@ -1,4 +1,4 @@
-shadowsocks=tw2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇼🇸台湾节点1
+shadowsocks=tw2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇼🇸台湾节点
 
 shadowsocks=pccw2.67ss.xyz:49414, method=rc4-md5, password=36735, fast-open=false, udp-relay=false, tag=🇭🇰香港5
 
