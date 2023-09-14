@@ -7,7 +7,6 @@ DOMAIN-SUFFIX,adx-api.hupu.com,REJECT
 DOMAIN,cc.dace.hupu.com,REJECT
 DOMAIN-SUFFIX,as.uncn.jp,REJECT
 DOMAIN-SUFFIX,mc.yandex.ru,REJECT-DROP
-DOMAIN,c0.jdbstatic.com,HK
 DOMAIN-SUFFIX,app-measurement.com,Youtube
 #DOMAIN,impression.appsflyer.com,REJECT
 #DOMAIN,googleads.g.doubleclick.net,REJECT
