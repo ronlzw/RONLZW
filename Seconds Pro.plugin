@@ -1,0 +1,11 @@
+#!name = 解锁会员
+#!desc = 
+#!author = 
+#!icon = 
+#!date = 2024-10-06
+
+[Script]
+http-response ^https:\/\/us-central1-core-runloop\.cloudfunctions\.net\/verifyReceipt script-path = unlock.js, requires-body = true, binary-body-mode = false, tag = 解锁会员
+
+[MITM]
+hostname = us-central1-core-runloop.cloudfunctions.net
