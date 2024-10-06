@@ -1,9 +1,3 @@
-/*
-[rewrite_local]
-^https:\/\/us-central1-core-runloop\.cloudfunctions\.net\/verifyReceipt url script-response-body ../Profiles/seconds.snippet
-
-[mitm]
-hostname = us-central1-core-runloop.cloudfunctions.net
 */
 $notify("解锁");
 var TreeNewBee = JSON.parse($response.body);
