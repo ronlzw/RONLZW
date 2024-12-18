@@ -18,7 +18,7 @@ use: &use
 proxy-providers:
   provider1:
     <<: *p
-    url: ""
+    url: "https://gist.githubusercontent.com/ronlzw/1161b56965af495dd1f7540b81f82c00/raw/Hy2ClashMeta"
 
   provider2:
     <<: *p
