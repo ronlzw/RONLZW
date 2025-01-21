@@ -159,4 +159,4 @@ rules:
   - GEOSITE,pixiv,Pixiv
   - GEOSITE,CN,国内
   - GEOIP,CN,国内
-  - MATCH,其他
+  - MATCH,美国
