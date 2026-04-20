@@ -1,0 +1,41 @@
+// Reddit AdBlock + NSFW Filter
+var nsfw = $argument === “true”;
+var body = $response.body;
+console.log(“body len:” + (body ? body.length : 0) + “ first:” + (body ? body.charCodeAt(0) : -1));
+if (!body || body.length === 0) { $done({}); }
+var obj;
+try { obj = JSON.parse(body); console.log(“parse ok”); }
+catch (e) { console.log(“parse fail:” + e.message); $done({}); }
+function walk(value) {
+if (Array.isArray(value)) {
+var r = [];
+for (var i = 0; i < value.length; i++) { var w = walk(value[i]); if (w !== null) r.push(w); }
+return r;
+}
+if (value !== null && typeof value === “object”) {
+if (value.__typename === “AdPost”) return null;
+if (value.node && typeof value.node === “object” && value.node.adPayload && typeof value.node.adPayload === “object”) return null;
+if (value.node && typeof value.node === “object” && Array.isArray(value.node.cells)) {
+var cells = value.node.cells;
+for (var c = 0; c < cells.length; c++) {
+if (cells[c].__typename === “AdMetadataCell” || cells[c].isAdPost === true) return null;
+}
+}
+var out = {};
+var keys = Object.keys(value);
+for (var k = 0; k < keys.length; k++) {
+var key = keys[k];
+if (nsfw && key === “isNsfw” && value[key] === true) { out[key] = false; continue; }
+if (nsfw && key === “isNsfwMediaBlocked” && value[key] === true) { out[key] = false; continue; }
+if (nsfw && key === “isNsfwContentShown” && value[key] === false) { out[key] = true; continue; }
+if (key === “commentsPageAds” && Array.isArray(value[key])) { out[key] = []; continue; }
+var walked = walk(value[key]);
+if (walked !== null) { out[key] = walked; }
+}
+return out;
+}
+return value;
+}
+var modified = walk(obj);
+console.log(“walk done”);
+$done({ body: JSON.stringify(modified) });
