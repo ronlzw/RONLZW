@@ -1,22 +1,70 @@
-var body=$response.body;
-console.log(“len:”+body.length+” first:”+body.charCodeAt(0));
-if(!body||body.length===0){$done({});}
-var obj;
-try{obj=JSON.parse(body);console.log(“ok”);}
-catch(e){console.log(“fail:”+e.message);$done({});}
-function walk(v){
-if(Array.isArray(v)){var r=[];for(var i=0;i<v.length;i++){var w=walk(v[i]);if(w!==null)r.push(w);}return r;}
-if(v!==null&&typeof v===“object”){
-if(v.__typename===“AdPost”)return null;
-if(v.node&&typeof v.node===“object”&&v.node.adPayload&&typeof v.node.adPayload===“object”)return null;
-if(v.node&&typeof v.node===“object”&&Array.isArray(v.node.cells)){var cells=v.node.cells;for(var c=0;c<cells.length;c++){if(cells[c].__typename===“AdMetadataCell”||cells[c].isAdPost===true)return null;}}
-var out={};var keys=Object.keys(v);
-for(var k=0;k<keys.length;k++){var key=keys[k];
-if(key===“isNsfw”&&v[key]===true){out[key]=false;continue;}
-if(key===“isNsfwMediaBlocked”&&v[key]===true){out[key]=false;continue;}
-if(key===“isNsfwContentShown”&&v[key]===false){out[key]=true;continue;}
-if(key===“commentsPageAds”&&Array.isArray(v[key])){out[key]=[];continue;}
-var wk=walk(v[key]);if(wk!==null){out[key]=wk;}}
-return out;}
-return v;}
-$done({body:JSON.stringify(walk(obj))});
+// Reddit 去广告 - Loon JS 版
+// 原版 Surge JQ 逻辑移植为 JavaScript
+// 功能: 过滤广告帖子、清空评论页广告、关闭 NSFW 提示
+
+const body = $response.body;
+if (!body || body.length === 0) {
+$done({});
+}
+
+let obj;
+try {
+obj = JSON.parse(body);
+} catch (e) {
+$done({});
+}
+
+function walk(value) {
+if (Array.isArray(value)) {
+const result = [];
+for (const item of value) {
+const processed = walk(item);
+if (processed !== undefined) result.push(processed);
+}
+return result;
+} else if (value !== null && typeof value === “object”) {
+// 过滤广告对象
+if (value.__typename === “AdPost”) return undefined;
+
+```
+const node = value.node;
+if (node && typeof node === "object") {
+  // 过滤含广告 cells 的 node
+  if (Array.isArray(node.cells)) {
+    const hasAd = node.cells.some(
+      (c) => c.__typename === "AdMetadataCell" || c.isAdPost === true
+    );
+    if (hasAd) return undefined;
+  }
+  // 过滤含 adPayload 的 node
+  if (node.adPayload && typeof node.adPayload === "object") {
+    return undefined;
+  }
+}
+
+// 递归处理所有字段
+const out = {};
+for (const [k, v] of Object.entries(value)) {
+  // 关闭 NSFW 提示
+  if (k === "isNsfw" && v === true) { out[k] = false; continue; }
+  if (k === "isNsfwMediaBlocked" && v === true) { out[k] = false; continue; }
+  if (k === "isNsfwContentShown" && v === false) { out[k] = true; continue; }
+  // 清空评论页广告列表
+  if (k === "commentsPageAds" && Array.isArray(v)) { out[k] = []; continue; }
+
+  const processed = walk(v);
+  out[k] = processed;
+}
+return out;
+```
+
+}
+return value;
+}
+
+try {
+const result = walk(obj);
+$done({ body: JSON.stringify(result) });
+} catch (e) {
+$done({});
+}
