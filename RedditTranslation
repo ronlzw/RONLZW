@@ -1,0 +1,22 @@
+// Reddit Translation + Remove Brotli
+var args = $argument ? $argument.split(”&”) : [];
+var enabled = args[0] === “true”;
+var tv = args[1] || “enabled, seo, zh-hans”;
+var headers = $request.headers;
+var allKeys = Object.keys(headers);
+for (var j = 0; j < allKeys.length; j++) {
+if (allKeys[j].toLowerCase() === “accept-encoding”) {
+var parts = headers[allKeys[j]].split(”,”);
+var filtered = [];
+for (var k = 0; k < parts.length; k++) { if (parts[k].trim() !== “br”) filtered.push(parts[k].trim()); }
+headers[allKeys[j]] = filtered.join(”, “);
+break;
+}
+}
+if (!enabled) { $done({ headers: headers }); }
+allKeys = Object.keys(headers);
+for (var i = 0; i < allKeys.length; i++) {
+if (allKeys[i].toLowerCase() === “x-reddit-translations”) { delete headers[allKeys[i]]; }
+}
+headers[“x-reddit-translations”] = tv;
+$done({ headers: headers });
