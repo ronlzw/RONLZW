@@ -1,22 +1,13 @@
-// Reddit Translation + Remove Brotli
-var args = $argument ? $argument.split(”&”) : [];
-var enabled = args[0] === “true”;
-var tv = (args[1] || “enabled seo zh-hans”).split(” “).join(”, “);
-var headers = $request.headers;
-var allKeys = Object.keys(headers);
-for (var j = 0; j < allKeys.length; j++) {
-if (allKeys[j].toLowerCase() === “accept-encoding”) {
-var parts = headers[allKeys[j]].split(”,”);
-var filtered = [];
-for (var k = 0; k < parts.length; k++) { if (parts[k].trim() !== “br”) filtered.push(parts[k].trim()); }
-headers[allKeys[j]] = filtered.join(”, “);
-break;
-}
-}
-if (!enabled) { $done({ headers: headers }); }
-allKeys = Object.keys(headers);
-for (var i = 0; i < allKeys.length; i++) {
-if (allKeys[i].toLowerCase() === “x-reddit-translations”) { delete headers[allKeys[i]]; }
-}
-headers[“x-reddit-translations”] = tv;
-$done({ headers: headers });
+var headers=$request.headers;
+var ks=Object.keys(headers);
+for(var j=0;j<ks.length;j++){
+if(ks[j].toLowerCase()===“accept-encoding”){
+var pts=headers[ks[j]].split(”,”);
+var fl=[];
+for(var k=0;k<pts.length;k++){if(pts[k].trim()!==“br”)fl.push(pts[k].trim());}
+headers[ks[j]]=fl.join(”, “);
+break;}}
+ks=Object.keys(headers);
+for(var i=0;i<ks.length;i++){if(ks[i].toLowerCase()===“x-reddit-translations”){delete headers[ks[i]];}}
+headers[“x-reddit-translations”]=“enabled, seo, zh-hans”;
+$done({headers:headers});
