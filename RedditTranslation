@@ -1,7 +1,7 @@
 // Reddit Translation + Remove Brotli
 var args = $argument ? $argument.split(”&”) : [];
 var enabled = args[0] === “true”;
-var tv = args[1] || “enabled, seo, zh-hans”;
+var tv = (args[1] || “enabled seo zh-hans”).split(” “).join(”, “);
 var headers = $request.headers;
 var allKeys = Object.keys(headers);
 for (var j = 0; j < allKeys.length; j++) {
